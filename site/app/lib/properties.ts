@@ -34,15 +34,15 @@ export const properties: Property[] = [
     description:
       "Демонстрационная запись. Замените сведения на проверенные данные объекта перед публикацией.",
     photos: [
-      "/properties/object-1/Фото_01.jpg",
-      "/properties/object-1/Фото_02.jpg",
-      "/properties/object-1/Фото_03.jpg",
-      "/properties/object-1/Фото_04.jpg",
-      "/properties/object-1/Фото_05.jpg",
-      "/properties/object-1/Фото_06.jpg",
-      "/properties/object-1/Фото_07.jpg",
-      "/properties/object-1/Фото_08.jpg",
-      "/properties/object-1/Фото_09.jpg"
+      "/properties/object-1/photo-01.jpg",
+      "/properties/object-1/photo-02.jpg",
+      "/properties/object-1/photo-03.jpg",
+      "/properties/object-1/photo-04.jpg",
+      "/properties/object-1/photo-05.jpg",
+      "/properties/object-1/photo-06.jpg",
+      "/properties/object-1/photo-07.jpg",
+      "/properties/object-1/photo-08.jpg",
+      "/properties/object-1/photo-09.jpg"
     ],
     isDemo: true
   }
