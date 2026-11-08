@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { properties } from "../../lib/properties";
 import PropertyGallery from "../PropertyGallery";
 
-const siteUrl = "https://agaestate.uz";
+const siteUrl = "https://www.agaestate.uz";
 
 export function generateStaticParams() {
   return properties.map((property) => ({ id: property.id }));
@@ -44,8 +44,38 @@ export default async function PropertyPage({ params }: { params: Promise<{ id: s
     ["Ориентир", property.landmark],
   ];
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Apartment",
+    name: property.title,
+    description: property.description,
+    image: property.photos.map((photo) => `${siteUrl}${photo}`),
+    floorSize: {
+      "@type": "QuantitativeValue",
+      value: property.area,
+      unitCode: "MTK",
+    },
+    numberOfRooms: property.rooms,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Tashkent",
+      addressCountry: "UZ",
+      streetAddress: property.address,
+    },
+    containedInPlace: {
+      "@type": "ApartmentComplex",
+      name: property.complex,
+    },
+  };
+
   return (
     <main className="min-h-screen bg-white text-[#28171e]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
+        }}
+      />
       <header className="border-b border-[#eadde1] px-6 py-5">
         <div className="mx-auto flex max-w-7xl items-center justify-between">
           <Link href="/" className="text-2xl font-bold tracking-widest text-[#781e38]">A.G.A.<span className="block text-[9px] tracking-[0.55em]">ESTATE</span></Link>

@@ -5,7 +5,7 @@ import "./globals.css";
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
-const siteUrl = "https://agaestate.uz";
+const siteUrl = "https://www.agaestate.uz";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -31,12 +31,33 @@ export const metadata: Metadata = {
     description: "Продажа и аренда недвижимости, новостройки и дома в Ташкенте.",
   },
   robots: { index: true, follow: true },
+  category: "real estate",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="ru" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "RealEstateAgent",
+            name: "A.G.A. Estate",
+            url: siteUrl,
+            telephone: "+998887519999",
+            areaServed: {
+              "@type": "City",
+              name: "Tashkent",
+            },
+            description:
+              "Агентство недвижимости A.G.A. Estate в Ташкенте: продажа и аренда квартир, новостройки и дома.",
+          }).replace(/</g, "\\u003c"),
+        }}
+      />
+      {children}
+    </body>
     </html>
   );
 }
