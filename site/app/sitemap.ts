@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { properties } from "./lib/properties";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://agaestate.uz";
+  const base = "https://www.agaestate.uz";
   const pages: MetadataRoute.Sitemap = [
     { url: base, changeFrequency: "weekly", priority: 1 },
     { url: `${base}/catalog`, changeFrequency: "daily", priority: 0.9 },
